@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const fs = require('fs');
 const libre = require('libreoffice-convert');
+const path = require('path')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('uploads'));
-
+app.use(express.static(path.join(__dirname,'public')))
 // Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
